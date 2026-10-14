@@ -1,0 +1,16 @@
+{
+  "name": "風中三語 長笛三重奏音樂會",
+  "short_name": "風中三語",
+  "description": "2026.10.20 國家兩廳院演奏廳 電子節目冊",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#050D1D",
+  "theme_color": "#050D1D",
+  "lang": "zh-Hant-TW",
+  "icons": [
+    {"src": "assets/icons/icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "assets/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any maskable"}
+  ]
+}
