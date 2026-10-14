@@ -130,7 +130,7 @@ main>section{position:relative;padding:0 var(--gutter)}
 .piece .composer{font-size:15px;line-height:1.5;color:var(--text-2);letter-spacing:.08em;align-self:center;display:flex;flex-direction:column;align-items:flex-start;row-gap:0}
 .piece .composer .zh{white-space:nowrap}
 .piece .composer .en{font:500 14px var(--f-latin);letter-spacing:.1em;color:var(--gold);font-variant-caps:all-small-caps}
-.piece .title-zh{grid-column:2/4;font-size:19px;font-weight:600;line-height:1.5;letter-spacing:.02em;color:var(--text);text-spacing-trim:trim-start;overflow-wrap:anywhere}
+.piece .title-zh{grid-column:2/4;font-size:21px;font-weight:600;line-height:1.5;letter-spacing:.02em;color:var(--gold-hi);text-spacing-trim:trim-start;overflow-wrap:anywhere;text-shadow:0 0 18px rgba(240,214,158,.25)}
 .piece .title-en{grid-column:2/4;font-size:17px;line-height:1.45;color:var(--text-2);font-variant-numeric:oldstyle-nums proportional-nums;overflow-wrap:anywhere;letter-spacing:.01em}
 .tog{display:inline-flex;align-items:center;gap:8px;font:500 15px/1.5 var(--f-ui);letter-spacing:.14em;color:var(--gold);white-space:nowrap}
 .piece .tog{grid-column:3;grid-row:1;align-self:center}
@@ -143,6 +143,7 @@ main>section{position:relative;padding:0 var(--gutter)}
 .tog b::after{inset:0 auto 0 6px;inline-size:1px}
 [open]>summary .tog b::after{transform:scaleY(0)}
 .piece .parts{grid-column:2/4;margin-top:6px;font:500 14px/1.6 var(--f-ui);letter-spacing:.06em;color:var(--gold)}
+.piece>summary .mov{grid-column:2/4;margin:6px 0 0;pointer-events:none}
 .piece .pt{white-space:nowrap}
 .piece .pt+.pt::before{content:"・";margin:0 2px;color:var(--gold-lo)}
 .note h3,.fulltext h4{margin:1.2em 0 .4em;font-size:19px;font-weight:600;letter-spacing:.06em;color:var(--gold-hi)}
@@ -265,14 +266,14 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;block-size:1px;
       <span class="no">1</span>
       <span class="composer"><span class="en">Friedrich Kuhlau</span> <span class="zh">庫勞</span></span>
       <span class="tog" aria-hidden="true"><i class="t-open">解說</i><i class="t-close">收合</i><b></b></span>
-      <span class="title-zh">《G 小調長笛三重奏，作品 13 之 2》</span>
+      <span class="title-zh">《G 小調長笛三重奏，Op.13 No. 2》</span>
       <span class="title-en">Flute Trio in G minor, Op. 13 No. 2</span>
+      <ol class="mov"><li>Allegro non tanto</li><li>Allegro con moto</li></ol>
       <span class="parts"><span class="pt">Flute I 王思穎</span><span class="pt">Flute II 林悅慈</span><span class="pt">Flute III 蔡如雅</span></span>
     </summary>
     <div class="piece-body">
-      <ol class="mov"><li>Allegro non tanto</li><li>Allegro con moto</li></ol>
       <div class="note prose">
-        <p>庫勞（Friedrich Kuhlau）被譽為「長笛界的貝多芬」，此曲《G 小調長笛三重奏，作品 13 之 2》充分展現他對長笛音色的深刻理解，是早期浪漫樂派的長笛室內樂代表作。樂曲分為兩個對比樂章：</p>
+        <p>庫勞（Friedrich Kuhlau）被譽為「長笛界的貝多芬」，此曲《G 小調長笛三重奏，Op.13 No. 2》充分展現他對長笛音色的深刻理解，是早期浪漫樂派的長笛室內樂代表作。樂曲分為兩個對比樂章：</p>
         <h3>第一樂章　Allegro non tanto</h3>
         <p>以 G 小調奏鳴曲式寫成，第一主題深沉悲愴，帶有強烈的戲劇張力；第二主題則轉入降 B 大調，旋律優美流暢。發展部巧妙運用對位手法，三支長笛相互模仿、問答，展現庫勞對長笛音色的精湛掌控。</p>
         <h3>第二樂章　Allegro con moto</h3>
@@ -288,6 +289,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;block-size:1px;
       <span class="tog" aria-hidden="true"><i class="t-open">解說</i><i class="t-close">收合</i><b></b></span>
       <span class="title-zh">《奇維達萊二重奏》</span>
       <span class="title-en">Cividale – flute duo</span>
+      <ol class="mov"><li>第一樂章</li><li>第二樂章</li><li>第三樂章</li></ol>
       <span class="parts"><span class="pt">Flute I 蔡如雅</span><span class="pt">Flute II 王思穎</span></span>
     </summary>
     <div class="piece-body">
@@ -311,10 +313,10 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;block-size:1px;
       <span class="tog" aria-hidden="true"><i class="t-open">解說</i><i class="t-close">收合</i><b></b></span>
       <span class="title-zh">《鳥》</span>
       <span class="title-en">Birds</span>
+      <ol class="mov"><li>Birdsong</li><li>Flight</li><li>Journey</li></ol>
       <span class="parts"><span class="pt">Piccolo 林悅慈</span><span class="pt">Flute 蔡如雅</span><span class="pt">Alto Flute 王思穎</span></span>
     </summary>
     <div class="piece-body">
-      <ol class="mov"><li>Birdsong</li><li>Flight</li><li>Journey</li></ol>
       <div class="note prose">
         <p>荷蘭裔美國作曲家 Herman Beeftink 的作品《Birds》（鳥），是一首極具畫面感與生命力的現代長笛三重奏佳作。在這首樂曲中，聽眾彷彿能看見晨光灑落林間，聽見微風拂過樹梢。這不僅是一幅描繪大自然的聽覺風景畫，更是一場由短笛、長笛與中音長笛共同交織出的精彩對話。</p>
         <p>在這座音樂森林裡，三項樂器各自化身為不同姿態的鳥兒。短笛（Piccolo）以其極具穿透力的清亮高音，成為林間最靈動嬌小的身影。那輕巧的跳音與活潑的裝飾音，就像是充滿好奇心的幼鳥，在枝頭間無憂無慮地穿梭跳躍，為整首曲子注入了最純粹的朝氣與明亮的光彩。</p>
@@ -334,10 +336,10 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;block-size:1px;
       <span class="tog" aria-hidden="true"><i class="t-open">解說</i><i class="t-close">收合</i><b></b></span>
       <span class="title-zh">《長笛二重奏，K.156》</span>
       <span class="title-en">Flute Duo K.156</span>
+      <ol class="mov"><li>Allegretto Grazioso</li><li>Andante con Variazioni</li><li>Allegretto Scherzo</li></ol>
       <span class="parts"><span class="pt">Flute I 林悅慈</span><span class="pt">Flute II 蔡如雅</span></span>
     </summary>
     <div class="piece-body">
-      <ol class="mov"><li>Allegretto Grazioso</li><li>Andante con Variazioni</li><li>Allegretto Scherzo</li></ol>
       <div class="note prose">
         <p>這首雙長笛二重奏其實是後人改編自莫札特其他不同編制的室內樂作品，但具體來源，目前說法不太一致：</p>
         <ul><li>一個來源指出它改編自《鋼琴三重奏》K.564</li><li>也有資料庫將這組二重奏歸類為改編作品，但未明確標示每一首的原始出處</li></ul>
@@ -360,10 +362,10 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;block-size:1px;
       <span class="tog" aria-hidden="true"><i class="t-open">解說</i><i class="t-close">收合</i><b></b></span>
       <span class="title-zh">《臺灣民謠二重奏》</span>
       <span class="title-en">Traditional Taiwanese Melodies for two flutes</span>
+      <ol class="mov arabic"><li>Silhouette</li><li>Torn Fishing Net</li><li>Come back to me, Lover</li><li>Longing</li><li>Whispering Hope</li><li>Grief</li><li>Summer Jasmine</li><li>Twilight of Tam-Sui</li><li>Dreaming by the Stream</li></ol>
       <span class="parts"><span class="pt">Flute I 王思穎</span><span class="pt">Flute II 林悅慈</span></span>
     </summary>
     <div class="piece-body">
-      <ol class="mov arabic"><li>Silhouette</li><li>Torn Fishing Net</li><li>Come back to me, Lover</li><li>Longing</li><li>Whispering Hope</li><li>Grief</li><li>Summer Jasmine</li><li>Twilight of Tam-Sui</li><li>Dreaming by the Stream</li></ol>
       <div class="note prose">
         <p>被譽為「長笛界的莫札特」的蓋瑞・夏克，同時身兼長笛家、作曲家及鋼琴家，3 歲上台正式演出，5 歲發表作品，15 歲即與紐約愛樂及費城交響樂團合作，亦是現今擁有大量樂曲創作的當代長笛大師。</p>
         <p>《Traditional Taiwanese Melodies》以台灣傳統旋律為素材，透過兩支長笛的對話與交織，重新詮釋台灣民間音樂的旋律與韻味。</p>
@@ -379,10 +381,10 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;block-size:1px;
       <span class="tog" aria-hidden="true"><i class="t-open">解說</i><i class="t-close">收合</i><b></b></span>
       <span class="title-zh">《百匯天堂》長笛三重奏</span>
       <span class="title-en">Parfait Paradise</span>
+      <ol class="mov"><li>Fruit with Wafer</li><li>Flan with Pocky</li><li>Anmitsu with Mochi Cream</li><li>Chocolate with Brownie</li></ol>
       <span class="parts"><span class="pt">Flute I 蔡如雅</span><span class="pt">Flute II 王思穎</span><span class="pt">Flute III 林悅慈</span></span>
     </summary>
     <div class="piece-body">
-      <ol class="mov"><li>Fruit with Wafer</li><li>Flan with Pocky</li><li>Anmitsu with Mochi Cream</li><li>Chocolate with Brownie</li></ol>
       <div class="note prose">
         <p>八木澤教司畢業於日本武藏野音樂大學作曲學系，並在同大學取得碩士學位。其管樂曲代表作不僅在日本，在美國、歐洲、亞洲等各國間也廣泛受到喜愛。除此之外，他也是日本少數曾在新曲發表中，由被稱為世界最優秀管樂團之一的法國巴黎禁衛軍交響管樂團（Orchestre d'Harmonie de la Garde Républicaine）首演作品的作曲家。</p>
         <p>到目前為止，他曾受邀為日本全國植樹祭、國民運動大會、全國高等學校綜合體育大會以及許多學校創作樂曲，並曾擔任各式大賽評審、客席指揮、指導、受邀演講，以及音樂雜誌執筆和音樂出版社的諮詢等，是現在在世界上受到注目、最有氣勢的年輕作曲家之一。</p>
