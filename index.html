@@ -42,7 +42,7 @@
 /* ===== base ===== */
 *{box-sizing:border-box}
 html{-webkit-text-size-adjust:100%;background:var(--bg)}
-body{margin:0;background:var(--grain) 0 0/180px 180px,var(--bg);color:var(--text);
+body{margin:0;background:var(--grain) 0 0/180px 180px;color:var(--text);
   font:400 17px/1.75 var(--f-text);letter-spacing:.02em;font-synthesis:none;font-kerning:normal;
   font-variant-numeric:lining-nums proportional-nums;line-break:strict;word-break:normal;overflow-wrap:anywhere;
   overflow-x:hidden}
@@ -63,11 +63,13 @@ h2{font-size:clamp(24px,6.6vw,26px);font-weight:600;letter-spacing:.16em;line-he
 /* ===== hero ===== */
 .hero{position:relative;isolation:isolate;min-height:70svh;
   padding:calc(env(safe-area-inset-top) + 20px) var(--gutter) 40px;display:flex;flex-direction:column}
-.hero::before{content:"";position:absolute;inset:0;z-index:-2;background:url(assets/img/hero_bg.webp) right top/cover no-repeat;
-  -webkit-mask-image:linear-gradient(#000 0 42%,rgba(0,0,0,.55) 68%,transparent 100%);mask-image:linear-gradient(#000 0 42%,rgba(0,0,0,.55) 68%,transparent 100%)}
+/* 整頁底圖（固定在視窗，內容在上方捲動）+ 進場時由模糊轉清晰 */
+body::before{content:"";position:fixed;inset:0;z-index:-3;background:#050D1D url(assets/img/wind_bg.jpg) 100% 100%/cover no-repeat;pointer-events:none}
+@media (max-aspect-ratio:3/4){body::before{background-size:auto 122%}}
+body::after{content:"";position:fixed;inset:0;z-index:-2;pointer-events:none;
+  background:radial-gradient(120% 90% at 50% 30%,rgba(5,13,29,0) 35%,rgba(5,13,29,.5) 100%),linear-gradient(180deg,rgba(5,13,29,.28),rgba(5,13,29,.1) 40%,rgba(5,13,29,.12))}
 .hero::after{content:"";position:absolute;inset:0;z-index:-1;pointer-events:none;
-  background:var(--grain) 0 0/180px 180px,linear-gradient(100deg,rgba(5,13,29,.82) 0%,rgba(5,13,29,.45) 52%,rgba(5,13,29,0) 78%);
-  -webkit-mask-image:linear-gradient(#000 0 42%,rgba(0,0,0,.55) 68%,transparent 100%);mask-image:linear-gradient(#000 0 42%,rgba(0,0,0,.55) 68%,transparent 100%)}
+  background:linear-gradient(100deg,rgba(5,13,29,.62) 0%,rgba(5,13,29,.22) 55%,rgba(5,13,29,0) 80%)}
 .hero .eyebrow{margin:0 0 64px}
 .title{font-size:clamp(46px,14.5vw,60px);font-weight:600;line-height:1.05;letter-spacing:.12em;margin:0 -.12em 12px 0;color:#F0D69E;font-feature-settings:"palt" 0}
 .title span{display:inline-block;color:transparent;
@@ -91,19 +93,20 @@ h2{font-size:clamp(24px,6.6vw,26px);font-weight:600;letter-spacing:.16em;line-he
 @media (max-width:359px){.tagline{position:static;writing-mode:horizontal-tb;letter-spacing:.06em;margin:16px 0 0;max-block-size:none}.when{align-items:first baseline}}
 /* 進場：只在 .js 下隱藏、.ready 才播；1.6s failsafe */
 @media (prefers-reduced-motion:no-preference){
-  html.js:not(.ready) .hero::before,html.js:not(.ready) .hero-seq,html.js:not(.ready) .title span{opacity:0}
-  html.js:not(.ready) .hero-seq,html.js:not(.ready) .hero::before{animation:failsafe 0s 1.6s forwards}
-  html.ready .hero::before{animation:bgIn 1.8s var(--ease-out) both}
+  html.js:not(.ready) body::before,html.js:not(.ready) .hero-seq,html.js:not(.ready) .title span{opacity:0}
+  html.js:not(.ready) .hero-seq,html.js:not(.ready) body::before{animation:failsafe 0s 1.6s forwards}
+  html.ready body::before{animation:bgBlur 2.2s var(--ease-out) both}
   html.ready .hero-seq{animation:up .7s var(--ease-out) both;animation-delay:var(--d,0ms)}
   html.ready .title span{animation:glyph .9s var(--ease-out) both;animation-delay:calc(250ms + var(--i)*90ms)}
   html.ready .display-en{animation:track 1.1s var(--ease-out) 620ms both}
   html.ready .tagline{animation:wind 1.4s cubic-bezier(.33,0,.15,1) 900ms both}
   html.ready .hero-rule{animation:rule .9s var(--ease-io) 820ms both}
 }
-@media (prefers-reduced-motion:reduce){html.js .hero-seq,html.js .hero::before{animation:fade .3s ease both}}
+@media (prefers-reduced-motion:reduce){html.js .hero-seq,html.js body::before{animation:fade .3s ease both}}
 @keyframes failsafe{to{opacity:1}}
 @keyframes fade{from{opacity:0}}
 @keyframes bgIn{from{opacity:0;transform:scale(1.06)}}
+@keyframes bgBlur{from{opacity:0;filter:blur(28px) saturate(1.3);transform:scale(1.12)}60%{opacity:1}to{filter:blur(0) saturate(1);transform:none}}
 @keyframes up{from{opacity:0;transform:translateY(10px)}}
 @keyframes glyph{from{opacity:0;transform:translateY(.18em);filter:blur(6px)}}
 @keyframes track{from{opacity:0;letter-spacing:.42em}}
@@ -111,12 +114,18 @@ h2{font-size:clamp(24px,6.6vw,26px);font-weight:600;letter-spacing:.16em;line-he
 @keyframes rule{from{transform:scaleX(0)}}
 /* ===== sections ===== */
 main>section{position:relative;padding:0 var(--gutter)}
+/* 霧面玻璃：模糊後方底圖，文字區塊維持易讀 */
+#programme,#intro,#performers{background:linear-gradient(180deg,rgba(8,20,39,.55),rgba(8,20,39,.42));
+  -webkit-backdrop-filter:blur(18px) saturate(1.25);backdrop-filter:blur(18px) saturate(1.25);
+  border-top:1px solid var(--hair)}
+#programme{padding-bottom:24px}
+#intro{margin-top:0;padding-bottom:56px}
+#performers{margin-top:0;padding-bottom:48px}
 #programme{padding-top:32px}
 #programme::before,#performers::before{content:"";position:absolute;inset:0 0 auto 0;block-size:52%;z-index:-1;pointer-events:none;
   background:radial-gradient(110% 80% at 50% 22%,rgba(24,35,54,.5),transparent 70%);
   -webkit-mask-image:linear-gradient(transparent,#000 28%,#000 70%,transparent);mask-image:linear-gradient(transparent,#000 28%,#000 70%,transparent)}
-#intro,#performers{padding-top:96px}
-#intro::after,#performers::after{content:"";position:absolute;top:40px;left:50%;inline-size:48px;block-size:1px;transform:translateX(-50%);background:var(--hair-strong)}
+#intro,#performers{padding-top:56px}
 /* programme */
 .piece{border-top:1px solid var(--hair)}
 .piece:last-of-type{border-bottom:1px solid var(--hair)}
@@ -204,7 +213,7 @@ main>section{position:relative;padding:0 var(--gutter)}
 }
 html.js:not(.io) .reveal:not(.in){animation:failsafe 0s 3s forwards}
 /* ===== footer ===== */
-footer{position:relative;margin-top:96px;padding:48px var(--gutter) calc(40px + 52px + env(safe-area-inset-bottom));background:var(--grain) 0 0/180px 180px,var(--bg-raise)}
+footer{position:relative;margin-top:0;padding:48px var(--gutter) calc(40px + 52px + env(safe-area-inset-bottom));background:rgba(5,13,29,.7);-webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px)}
 footer::before{content:"";position:absolute;top:0;left:0;right:0;block-size:1px;background:linear-gradient(90deg,transparent,var(--hair-strong),transparent)}
 .etiquette{font-size:16px;line-height:1.75;color:var(--text);margin:0 0 40px;text-align:justify}
 .orgs{display:grid;gap:24px}
@@ -216,7 +225,7 @@ footer::before{content:"";position:absolute;top:0;left:0;right:0;block-size:1px;
 .copy{margin-top:6px;font-family:var(--f-latin);letter-spacing:.1em}
 /* ===== tabbar ===== */
 .tabbar{position:fixed;inset:auto 0 0 0;z-index:10;display:grid;grid-template-columns:repeat(3,1fr);padding-bottom:env(safe-area-inset-bottom);
-  background:rgba(5,13,29,.94);border-top:1px solid var(--hair)}
+  background:rgba(5,13,29,.72);-webkit-backdrop-filter:blur(20px) saturate(1.3);backdrop-filter:blur(20px) saturate(1.3);border-top:1px solid var(--hair)}
 .tabbar a{position:relative;display:flex;align-items:center;justify-content:center;min-block-size:52px;font:500 14px var(--f-ui);letter-spacing:.14em;color:var(--text-2);text-decoration:none;
   -webkit-tap-highlight-color:transparent;transition:color .24s var(--ease-soft),transform .16s var(--ease-soft)}
 .tabbar a[aria-current]{color:var(--gold-hi)}
